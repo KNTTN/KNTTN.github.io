@@ -7,7 +7,7 @@ let particles = [];
 const numParticles = 15;
 const images = [];
 const imagePaths = [
-    '/Thing1/Assets/gato.jpg',          
+    '/Thing1/Assets/Gato.jpg',          
     '/Thing1/Assets/Drinking\ Cat.jpg', 
     '/Thing1/Assets/Zen\ Cat.jpg'        
 ];
