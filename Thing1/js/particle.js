@@ -32,16 +32,23 @@ resizeCanvas();
 
 function loadImages() {
     let loadedCount = 0;
+    console.log('Starting to load images...');
     imagePaths.forEach((path, index) => {
         const img = new Image();
+        console.log(`Attempting to load: ${path}`);
         img.src = path;
         img.onload = () => {
+            console.log(`Successfully loaded: ${path}`);
             images[index] = img;
             loadedCount++;
             if (loadedCount === imagePaths.length) {
+                console.log('All images loaded, initializing particles');
                 initParticles();
                 tick();
             }
+        };
+        img.onerror = (err) => {
+            console.error(`Failed to load image: ${path}`, err);
         };
     });
 }
