@@ -4,7 +4,7 @@ const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 
 const img = new Image();
-img.src = './Assets/KFCat.png';
+img.src = '/Thing1/Assets/KFCat.png';
 
 let angle = 0;
 let spins = 0;
