@@ -7,9 +7,9 @@ let particles = [];
 const numParticles = 15;
 const images = [];
 const imagePaths = [
-    './Assets/gato.jpg',          
-    './Assets/Drinking\ Cat.jpg', 
-    './Assets/Zen\ Cat.jpg'        
+    '/Thing1/Assets/gato.jpg',          
+    '/Thing1/Assets/Drinking\ Cat.jpg', 
+    '/Thing1/Assets/Zen\ Cat.jpg'        
 ];
 
 // Add these variables at the top with other declarations
