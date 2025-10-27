@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SAT Vocab Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+<div class="title-group">
+<p class="kicker">SAT Vocabulary Studio</p>
+<h1>Lightweight flashcards for serious prep</h1>
+</div>
+<div class="controls" role="group" aria-label="Global controls">
+<label class="search-label">
+<span class="visually-hidden">Search words</span>
+<input id="search-input" type="search" placeholder="Search words or definitions" autocomplete="off" />
+</label>
+<label class="select-label">
+<span class="visually-hidden">Change view</span>
+<select id="view-select" aria-label="Deck view">
+<option value="all">All words</option>
+<option value="review">Review only</option>
+<option value="study">Study mode</option>
+</select>
+</label>
+<button id="shuffle-btn" class="ghost" type="button">Shuffle</button>
+</div>
+</header>
+
+<main class="main" aria-labelledby="flashcard-heading">
+<aside class="sidebar" aria-label="Session settings">
+<section class="panel" aria-labelledby="session-heading">
+<h2 id="session-heading">Study session</h2>
+<div class="session-controls">
+<button id="prev-btn" type="button" aria-label="Previous word">◀</button>
+<button id="flip-btn" type="button">Flip</button>
+<button id="next-btn" type="button" aria-label="Next word">▶</button>
+</div>
+<div class="session-actions">
+<button id="mark-right" type="button">Mark right</button>
+<button id="mark-wrong" type="button">Mark wrong</button>
+</div>
+<dl class="stats" id="stats">
+<div>
+<dt>Total studied</dt>
+<dd id="stat-total">0</dd>
+</div>
+<div>
+<dt>Percent correct</dt>
+<dd id="stat-percent">0%</dd>
+</div>
+<div>
+<dt>Deck size</dt>
+<dd id="stat-deck">0</dd>
+</div>
+</dl>
+</section>
+
+<section class="panel" aria-labelledby="import-heading">
+<h2 id="import-heading">Word management</h2>
+<label for="import-area">Import (one entry per line)</label>
+<textarea id="import-area" placeholder="word | part of speech | definition"></textarea>
+<div class="import-row">
+<button id="import-btn" type="button">Import from text</button>
+<label class="filebtn">Upload .txt
+<input id="import-file" type="file" accept=".txt" hidden />
+</label>
+</div>
+<p class="small">Use pipes to add optional part of speech and definition. Enable/disable words in the list.</p>
+</section>
+
+<section class="panel" aria-labelledby="filters-heading">
+<h2 id="filters-heading">Filters</h2>
+<label class="checkbox"><input type="checkbox" id="only-enabled" checked /> Only enabled</label>
+<label class="checkbox"><input type="checkbox" id="auto-flip" /> Auto-flip to front after marking</label>
+<label class="checkbox"><input type="checkbox" id="study-review-only" /> Study flagged review words</label>
+</section>
+
+<section class="panel" aria-labelledby="shortcuts-heading">
+<h2 id="shortcuts-heading">Shortcuts</h2>
+<ul class="shortcut-list">
+<li><span class="keycap">Space</span> Flip card</li>
+<li><span class="keycap">→</span> Next word</li>
+<li><span class="keycap">←</span> Previous word</li>
+<li><span class="keycap">C</span> Mark correct <span aria-hidden="true">✅</span></li>
+<li><span class="keycap">X</span> Mark incorrect <span aria-hidden="true">❌</span></li>
+<li><span class="keycap">R</span> Toggle review flag</li>
+</ul>
+</section>
+</aside>
+
+<section class="content">
+<div class="flashcard-area">
+<div class="flashcard" id="card" tabindex="0" role="button" aria-live="polite" aria-labelledby="card-front card-back">
+<div class="card-face front" id="card-front">
+<h2 id="flashcard-heading">Word</h2>
+<p class="card-pos" id="card-pos"></p>
+<p class="card-pron" id="card-pron" aria-live="polite"></p>
+</div>
+<div class="card-face back" id="card-back">
+<div class="definition-block">
+<h3 id="card-word"></h3>
+<p class="card-pos" id="card-part"></p>
+<p class="card-pron" id="card-pron-back"></p>
+<p class="card-definition" id="card-definition"></p>
+<p class="card-link" id="card-link"></p>
+</div>
+<div class="notes-block">
+<h4>Your notes</h4>
+<p id="card-notes" class="card-notes">No notes yet.</p>
+</div>
+</div>
+</div>
+<div class="card-meta">
+<label class="checkbox"><input type="checkbox" id="mark-review" /> Mark for review</label>
+<label class="notes-label">Notes
+<textarea id="note-input" rows="2" placeholder="Add mnemonic or comparison" autocomplete="off"></textarea>
+</label>
+<span class="card-index" id="card-counter">0 / 0</span>
+</div>
+</div>
+
+<div class="list-area">
+<div class="list-controls">
+<button id="select-all" type="button">Enable all</button>
+<button id="deselect-all" type="button">Disable all</button>
+<button id="export-data" type="button">Export progress</button>
+<button id="reset-data" type="button">Reset data</button>
+</div>
+<div class="list" id="word-list" aria-live="polite"></div>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<small>Tip: press Space or click the card to flip. Use ◀ ▶ arrows to navigate. Press R to toggle review marks. All data lives in your browser.</small>
+</footer>
+</div>
+
+<script src="words.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
